@@ -3,7 +3,7 @@ from pandas import read_csv, DataFrame
 
 
 #read dataset.csv file
-dataset = read_csv('C:\\Users\\Admin\\PycharmProjects\\FactorsInfluencingHousePrice\\dataset.csv')
+dataset = read_csv('dataset.csv')
 
 
 #calculate correlation coefficient for price
