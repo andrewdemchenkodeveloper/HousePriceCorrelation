@@ -1,13 +1,14 @@
-#python data analysis library
-import csv
-from pandas import read_csv
+#important library
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
 
+#style settings
+matplotlib.style.use('bmh')
 
-#read dataset.csv file
-dataset = read_csv('dataset.csv')
-reader = csv.reader(open('dataset.csv'), delimiter=',', quotechar='"')
-
+#read dataset.csv
+dataset = pd.read_csv('dataset.csv')
 
 #Show Characteristics-Price Addiction
 corr = dataset.corr()._get_item_cache(item='price').plot(kind='bar', stacked=True)
@@ -16,12 +17,7 @@ plt.title('House Price Addiction With All Characteristics')
 plt.grid()
 plt.show()
 
-
-#save all addiction
-for row in reader:
-    i = 1
-    while (i != 20):
-        dataset.pivot_table('price', row[i]).plot(kind='bar', stacked=True)
-        plt.savefig('price-' + row[i] + ' addiction', format='png')
-        i += 1
-    break
+#price addictoion
+for c in dataset.columns.difference(['price']).tolist():
+    dataset.pivot_table('price', c).plot(kind='bar', stacked=True)
+    plt.savefig('price-{}-addiction.png'.format(c))
