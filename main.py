@@ -10,7 +10,7 @@ matplotlib.style.use('bmh')
 #read dataset.csv
 dataset = pd.read_csv('dataset.csv')
 
-#Show Characteristics-Price Addiction
+#show Characteristics-Price Addiction
 corr = dataset.corr()._get_item_cache(item='price').plot(kind='bar', stacked=True)
 plt.savefig('Characteristics-Price Addiction.png', format = 'png')
 plt.title('House Price Addiction With All Characteristics')
